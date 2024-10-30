@@ -1,0 +1,6 @@
+test:Test:
+  unchanged: from-default
+  changed-in-type: from-type
+  changed-in-entry: from-entry
+  changed-in-base-env: from-base-env
+  changed-in-env: from-env

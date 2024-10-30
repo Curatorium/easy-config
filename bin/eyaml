@@ -1,0 +1,42 @@
+#!/bin/bash -e
+
+declare -A map;
+args=("$@")
+for i in "${!args[@]}"; do
+  arg="${args[i]}";
+
+  # Skip if not an eYAML file
+  [[ ! -f "$arg" ]] && [[ ! $arg =~ *.eyml ]] && [[ ! $arg =~ *.eyml ]] && continue;
+
+  # Temporarily convert eYAML to eJSON
+  tmp=$(mktemp eyaml_XXXXXX.ejson);
+  trap 'rm -f "$tmp"' EXIT;
+  yq -ojson . "$arg" > "$tmp";
+
+  # Replace eYAML file argument with temporary eJSON file argument
+  args[i]="$tmp";
+  map["$arg"]="$tmp";
+done
+
+case "$*" in
+  # Convert eJSON files back to eYAML
+  *"encrypt "*|*" encrypt"*)
+    ejson "${args[@]}";
+    STATUS="$?";
+
+    for original in "${!map[@]}"; do
+        yq -P "${map[$original]}" > "$original";
+    done
+
+    exit $STATUS;
+  ;;
+
+  # Convert JSON output to YAML
+  *"decrypt "*|*" decrypt"*)
+    ejson "${args[@]}" | yq -P .;
+ ;;
+
+  *)
+    ejson "${args[@]}";
+  ;;
+esac
