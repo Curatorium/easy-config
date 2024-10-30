@@ -1,0 +1,9 @@
+acme:Cron:
+  memory: 2048MB
+  timeout: -1
+  log-level: warning
+acme:Website:
+  memory: 32MB
+  timeout: 2s
+  log-level: critical
+  host: acme.net

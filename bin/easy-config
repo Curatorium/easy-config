@@ -1,0 +1,22 @@
+#!/usr/bin/php
+<?php
+
+namespace Curatorium\EasyConfig;
+
+use Symfony\Component\Console\Application;
+use Whoops\Run;
+use Whoops\Handler\PlainTextHandler;
+
+require_once $_composer_autoload_path ?? __DIR__.'/../vendor/autoload.php';
+
+try {
+    set_error_handler(fn ($code, $msg) => throw new \ErrorException($msg, 0, $code));
+
+    $app = new Application();
+    $app->add(new App());
+    $app->setDefaultCommand('easy-config', true);
+    $app->run();
+} catch (\Throwable $e) {
+    $whoops = (new Run())->pushHandler(new PlainTextHandler())->register();
+    $whoops->handleException($e);
+}
