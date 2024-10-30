@@ -1,0 +1,32 @@
+{
+    "name": "curatorium/easy-config",
+    "description": "CLI to generate environment-specific configuration files",
+    "keywords": ["configuration", "environment", "multi-environment", "cli", "yaml", "eyaml", "json", "ejson"],
+    "authors": [{"name": "Mihai Stancu", "email": "stancu.t.mihai@gmail.com"}],
+
+    "type": "project",
+    "license": "MIT",
+
+    "bin": ["bin/easy-config", "bin/ez-cfg", "bin/eyaml"],
+    "scripts": {
+        "build": "box compile"
+    },
+
+    "require": {
+        "php": "^8.0",
+
+        "ext-json": "*",
+        "ext-yaml": "*",
+
+        "filp/whoops": "^2.16",
+        "symfony/console": "^6.0",
+        "twig/twig": "^3.14"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.4"
+    },
+
+    "autoload": {
+        "psr-4": {"Curatorium\\EasyConfig\\": "src/"}
+    }
+}

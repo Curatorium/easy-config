@@ -1,0 +1,6 @@
+{
+  "main": "bin/ez-cfg.php",
+  "output": "bin/ez-cfg",
+  "directories": ["src", "tpl", "vendor"],
+  "compression": "GZ"
+}

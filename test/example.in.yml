@@ -1,0 +1,41 @@
+:Default:
+  memory: 128MB
+  timeout: 30s
+  log-level: debug
+
+
+# Crons
+
+:Cron:
+  memory: 512MB
+  timeout: 300s
+  log-level: notice
+
+:Cron@prod:
+  memory: 1024MB
+  log-level: warning
+
+acme:Cron@prod:
+  memory: 2048MB
+  timeout: -1
+
+
+# Websites
+
+:Website:
+  memory: 32MB
+  timeout: 5s
+  log-level: warning
+
+:Website@prod:
+  timeout: 2s
+  log-level: critical
+
+acme:Website:
+  host: acme.com
+  host@test: test.acme.com
+  host@test-1: test-1.acme.com
+  host@test-2: test-2.acme.com
+  host@prod: acme.com
+  host@prod-1: acme.com
+  host@prod-2: acme.net

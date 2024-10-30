@@ -1,0 +1,18 @@
+:Default:
+  unchanged: from-default
+  changed-in-type: from-default
+
+:Test:
+  changed-in-type: from-type
+  changed-in-entry: from-type
+
+test:Test:
+  changed-in-entry: from-entry
+  changed-in-base-env: from-entry
+
+test:Test@prod:
+  changed-in-base-env: from-base-env
+  changed-in-env: from-base-env
+
+test:Test@prod-2:
+  changed-in-env: from-env
